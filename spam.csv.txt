@@ -1,0 +1,7 @@
+label,text
+spam,Win money now!!!
+ham,Hey how are you?
+spam,Claim your prize now
+ham,Let's meet tomorrow
+spam,Free entry in a contest
+ham,Call me when you are free

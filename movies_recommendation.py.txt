@@ -1,0 +1,26 @@
+import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import LabelEncoder
+
+# Load dataset
+df = pd.read_csv("movies.csv")
+
+# Encode genres
+le = LabelEncoder()
+df['genre_encoded'] = le.fit_transform(df['genre'])
+
+# Create similarity matrix
+similarity = cosine_similarity(df[['genre_encoded']])
+
+# Recommendation function
+def recommend(movie_name):
+    idx = df[df['title'] == movie_name].index[0]
+    scores = list(enumerate(similarity[idx]))
+    scores = sorted(scores, key=lambda x: x[1], reverse=True)
+
+    print("Recommended movies:")
+    for i in scores[1:4]:
+        print(df.iloc[i[0]]['title'])
+
+# Test
+recommend("Avengers")
